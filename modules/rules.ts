@@ -1,5 +1,5 @@
 export const defaultOrConstrained = (match: string): string =>
-    '(' + (match ? match.replace(/(^<|>$)/g, '') : "[a-zA-Z0-9-_.~%':|]+") + ')'
+    '(' + (match ? match.replace(/(^<|>$)/g, '') : "[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_.@~%':|]+") + ')'
 
 export type RegExpFactory = (match: any) => RegExp
 
@@ -15,24 +15,24 @@ export interface IRule {
 const rules: IRule[] = [
     {
         name: 'url-parameter',
-        pattern: /^:([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})(<(.+?)>)?/,
+        pattern: /^:([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-@_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-]{1})(<(.+?)>)?/,
         regex: (match: RegExpMatchArray) =>
             new RegExp(defaultOrConstrained(match[2]))
     },
     {
         name: 'url-parameter-splat',
-        pattern: /^\*([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})/,
+        pattern: /^\*([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})/,
         regex: /([^?]*)/
     },
     {
         name: 'url-parameter-matrix',
-        pattern: /^;([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})(<(.+?)>)?/,
+        pattern: /^;([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-]{1})(<(.+?)>)?/,
         regex: (match: RegExpMatchArray) =>
             new RegExp(';' + match[1] + '=' + defaultOrConstrained(match[2]))
     },
     {
         name: 'query-parameter',
-        pattern: /^(?:\?|&)(?::)?([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})/
+        pattern: /^(?:\?|&)(?::)?([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})/
     },
     {
         name: 'delimiter',
@@ -46,7 +46,7 @@ const rules: IRule[] = [
     },
     {
         name: 'fragment',
-        pattern: /^([0-9a-zA-Z]+)/,
+        pattern: /^([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]+)/,
         regex: (match: RegExpMatchArray) => new RegExp(match[0])
     }
 ]
