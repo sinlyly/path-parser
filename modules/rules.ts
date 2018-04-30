@@ -15,24 +15,24 @@ export interface IRule {
 const rules: IRule[] = [
     {
         name: 'url-parameter',
-        pattern: /^:([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-@_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-]{1})(<(.+?)>)?/,
+        pattern: /^:([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-@_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})(<(.+?)>)?/,
         regex: (match: RegExpMatchArray) =>
             new RegExp(defaultOrConstrained(match[2]))
     },
     {
         name: 'url-parameter-splat',
-        pattern: /^\*([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})/,
+        pattern: /^\*([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-@_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})/,
         regex: /([^?]*)/
     },
     {
         name: 'url-parameter-matrix',
-        pattern: /^;([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-]{1})(<(.+?)>)?/,
+        pattern: /^;([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-@_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})(<(.+?)>)?/,
         regex: (match: RegExpMatchArray) =>
             new RegExp(';' + match[1] + '=' + defaultOrConstrained(match[2]))
     },
     {
         name: 'query-parameter',
-        pattern: /^(?:\?|&)(?::)?([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})/
+        pattern: /^(?:\?|&)(?::)?([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-@_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})/
     },
     {
         name: 'delimiter',
