@@ -24,31 +24,31 @@ var __assign = Object.assign || function __assign(t) {
 };
 
 var defaultOrConstrained = function (match) {
-    return '(' + (match ? match.replace(/(^<|>$)/g, '') : "[a-zA-Z0-9-_.~%':|]+") + ')';
+    return '(' + (match ? match.replace(/(^<|>$)/g, '') : "[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_.~%':|]+") + ')';
 };
 var rules = [
     {
         name: 'url-parameter',
-        pattern: /^:([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})(<(.+?)>)?/,
+        pattern: /^:([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})(<(.+?)>)?/,
         regex: function (match) {
             return new RegExp(defaultOrConstrained(match[2]));
         }
     },
     {
         name: 'url-parameter-splat',
-        pattern: /^\*([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})/,
+        pattern: /^\*([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})/,
         regex: /([^?]*)/
     },
     {
         name: 'url-parameter-matrix',
-        pattern: /^;([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})(<(.+?)>)?/,
+        pattern: /^;([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9]{1})(<(.+?)>)?/,
         regex: function (match) {
             return new RegExp(';' + match[1] + '=' + defaultOrConstrained(match[2]));
         }
     },
     {
         name: 'query-parameter',
-        pattern: /^(?:\?|&)(?::)?([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})/
+        pattern: /^(?:\?|&)(?::)?([\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-_]*[\u4E00-\u9FA5\uF900-\uFA2D-a-zA-Z0-9-]{1})/
     },
     {
         name: 'delimiter',
